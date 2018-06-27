@@ -1,0 +1,61 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 one-dimensinoal case:\
+\
+slide 2: notation means f convolved with g. for a given positino n, which is a lag of g relative to f, multiple all values of elements together and then sum -> area of resulting multiplied signal\
+g: shifting n units, reflecting (can\'92t tell this bc it\'92s symmetric)\
+slide 5: one example, value of convoluation where lag=-5\
+\
+slide 10: g is a perfectly matched filter to detect feature f\
+\
+\
+two-d case:\
+slide 13:\
+2-d fiilter slides around whole image, end up with smaller feature map \'97 can zero-pad as needed if you need the same size to come out (that being said, people will sometimes use sizes designed to reduce size)\
+slides 19-24: see heatmap of convoluation based on amount of overlap with filter\
+\
+slide 25: W is an edge detection filter that\'92s commonly used\
+\
+slide 27 was an animation to show heatmap from convolution. could threshold if you wanted to be very specific for circles (only pull out max values)\
+\
+filter size: rule of thumb typically range from 3x3 to 7x7\
+in practice, often have many more filters than you really have unique features. ideally would have the same number\
+\
+slide 39-41: for most images, you\'92re always operating on a stack of filters bc of color, so filter is 3x3x3, operating on a volume, but the feature map is still 1 layer because you do element-wise multiplication\
+\
+\
+slide 42: idea is that these three images are the 3 color channels of an image\
+filters need weights for each of the 3 colors (2 filters shown), get 2 feature maps out because there are 2 filters\
+\
+slides 43-: activation functions (e.g. from yesterday: sigmoid function that tranlated a quantity to a probability)\
+value of convolution is 4, this is what the neuron receives as input. But what it sends out is not necessarily 4 \'97 activation function is overlaid here before that value is sent to higher layers. up to here, implicitly been using a linear activation. tyipcally this is not used bc you want to be able to represent nonlinear relationships\
+slide 47: these have fallen out of favor bc you can have large changes in a that don\'92t get reflected (decrease of dynamic range) \'93saturation\'94\
+slide 48: more popular now. threshold model. ReLU\
+\
+slide 49: pooling layer: typically keeps feature dimension, reduces others\
+typically set size = stride for pooling layers\
+max pooling: sends on message that an important feature exists, vs. caring about where it is\
+hyperparameter search: trade off of losing granularity vs increased position independence\
+presence of strongest feature vs. distribution of features \'97 depends on your goal\
+\
+slide 51: by the end, each filter is almost the size of the initial image\
+\
+slide 53: vectorized final pooling layer, MLP with weights for each of the 320 elements. each neuron is fully connected to each element. (W weights in classifier, can be fully trained)\
+\
+slide 58: shows how step size matters, hard to get to the yellow dot\
+\
+\
+\
+not in the slides: add a generative arm, go from top-level features and try to recapture initial images.\
+can use this to include unlabeled images when learning\
+not sure i understand how\'85\
+\
+call the original arm the \'93encoder\'94, other one is the \'93decoder\'94\
+can use how well the decoded image matches the original image as a learnign signal to refine weights along the way\
+feature extractor on the left, generative model on the left\
+}

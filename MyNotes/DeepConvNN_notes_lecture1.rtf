@@ -1,0 +1,41 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 slide 23-25:\
+convolution: takes in image and template, slides the template around the image \'97 result at any given position is a heatmap highlighting the feature that the template represents\
+result: new image with hotspots for where in the orig image that template occurred\
+\
+can\'92t handle templates of different sizes, that would have to come from a higher level, e.g. a big circle vs. small level\
+\
+filters *can* operate on color (RGB channels)\
+\
+Q: are these templates predefined (no)? Or learned from the data (yes)?\
+\
+\
+create one feature map per filter, result is a stack of feature/heat maps. now want to create a set of filteres that can look for submotifs\
+2nd layer filters have depth \'97 have to operate on stack\
+Q: same question \'97 do you have to predefine the submotifs you\'92re interested in? No \'97 this is the learning process.\
+\
+slide 31: now have feature maps that reflect submotifs instead\
+\
+slide 34: goal is at the top to have a set of features maps to which you can apply a classifier to make decisions (i.e. is this a bear?)\
+\
+\
+slide 36: In: nth image, convolution operation takes the image and the layer 1 filters. output is Mn: nth set of feature maps. layer 2: applied to Mn, layer 2 filters are psis, output  is Ln, etc.\
+classifier on top: script l, takes in layer 3 feature maps + set of weights (MLP-like weights) to get label script ln.\
+\
+slide 40:\
+goal: find best set of filters and classifier weights to minimize empirical risk function\
+\
+\
+slide 42: first level is showing gabor (?) filters \'97 universal edge detectors\
+layer 2 has some starting to look eye-like, ear-like, etc\'85\
+\
+transfer learning (not in slides): use pieces we learned previously to apply to a new object (\'93preinitialization\'94 using weights from the same network \'97 say trained it on cats, trains, dogs, then applied this to medical images instead). low-level features are universal across images, just the higher layers that are specific to a given application.\
+\
+\
+}

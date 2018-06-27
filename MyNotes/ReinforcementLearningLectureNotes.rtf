@@ -1,0 +1,81 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 NOTATION\
+s: clinical observations in a give state\
+A: set of m possible actions\
+P(s,a,s\'92): prob patient in state s, action a -> state s\'92\
+r(s,a,s\'92): reward for transiting to state s\'92. includes impact to patient & cost of a\
+Q(s,a) is nxm table with value of taking a in state s\
+\
+\
+\
+series of state, action, reward, state transition\
+want to learn a policy\
+equivalent = 
+\b learn Q
+\b0  (then can take action that maximizes Q given state s)\
+\
+\
+slide 12: what if we can\'92t bin? keep an eye on whether this is necessary\
+\
+slide 16: Q is a reward matrix, on the same scale as observed reward r(s,a,s\'92)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 alpha: rate of change in updating Q based on new data r(s,a,s\'92). close to 1: put a lot of weight on new observation. close to 0: dogmatic, tend to stick with old data.\
+this doesn\'92t consider long-term outcomes\
+but why couldn\'92t the state s\'92 incorporate both short and long-term outcomes?\
+\
+slide 22: \
+gamma is a discount factor - how much we discount the future relative to the present\
+confused about how this is different from including a smaller reward/higher cost using an s that includes short and long term outcomes\
+I think this is because the state space needs to not be infinitely large\
+\
+unroll Q: immediate reward r + gamma*r at t+1 + gamme^2*r at t+2 + gamma^3*r at t+2 + \'85\
+gamma: probability that you\'92ll got to the next step, looks at all possible future steps\
+Qold accounts for all future rewards\
+\
+go back and look at slide 32\
+\
+didn\'92t look at slide 38 on, go back and look\
+\
+\
+\
+LECTURE 2\
+\
+Begin by talking about how the discretization makes this intractable\
+slide 46: still discretize action space, NOT discretizing state space anymore\
+state space for Go: picture of board\
+this is using a neural net instead of a table\
+could use a MLP instead\
+no labels in this situation\'85 it\'92s a function instead, a row of the Q table in essence. \
+  before: data in -> binary label\
+  here: data in -> vector (Q(s,a)?)\
+\
+slide 47: reward (s,a,s\'92) is now rt\
+now \'93old Q\'94 is Q using old parameters theta\
+max Q term: future long-term reward if we took the optimal action in that new state\
+find paramters theta such that Q(st,at;theta) = rt + gamma*maxQ part\
+\
+top is probability of taking each action?\
+\
+sequential supervised learning\
+\
+question about patient-specific approach. i.e. p(s\'92,a,s) is different for different people\
+would have to stratify? is this how you\'92d connect genotypes, etc.?\
+\
+don\'92t have to do stochastic gradient descent here, just gradient descent bc 1 sample (??? think)\
+\
+slide 52: need this bc no table anymore\
+\
+\
+fundamental difference: no training set. go out and do stuff. q function is a recording of what is good and what is bad in a given state\
+\
+slide 64:\
+there\'92s more to reinforcement learning than Q learning\
+\
+\
+}
