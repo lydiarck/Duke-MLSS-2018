@@ -1,0 +1,31 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 slide 3: lots of things to do with generative modeling, GANS only do that last one (produce new samples)\
+\
+fundamental problem: how do you know how good your GAN is? no clear measure other than looking at images. no idea how to assess this for something like clinical data\
+\
+slide 30:\
+kind of reverse of how we thought about this. starting with 20 pieces of info (unif), then 256, then 784.\
+can think of Z as a real latent variable, e.g. stroke width, other features of digit. ideally, have same number of elements of Z as real features that could be used to describe the image/input\
+red: variable\
+green: placeholder\
+blue: operations\
+\
+slide 32: D receives real images (x) along with sigmoid from fake images\
+need to update red variables in G according to confusion in D, so we need a connection \
+need to make sure the same variables are being used to classify both the real and fake images in D\
+\
+train G and D separately\
+slide 33: variables in G should be grayed out (not updated)\
+take prob assigned to real images, log this and sum\
+take prob assigned to fake images, take 1- this, log it and sum\
+take mean of all these, higher number: D did better\
+\
+slide 34: simpler loss for G bc the only thing it can do is affect the bottom part of D\
+\
+}
